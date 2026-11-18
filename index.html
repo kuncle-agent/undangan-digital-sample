@@ -13,6 +13,13 @@
      dengan gambar lain, nama file samakan).
   3. Musik: taruh file MP3 di folder assets, beri nama musik.mp3
      (baris <audio> di bawah akan otomatis memakainya).
+  4. Foto mempelai: taruh di folder assets dengan nama persis
+     foto-pria.jpg dan foto-wanita.jpg (otomatis tampil bulat
+     di kartu mempelai; kalau file tidak ada, foto disembunyikan).
+  5. Galeri: taruh foto di folder assets dengan nama foto1.jpg,
+     foto2.jpg, foto3.jpg, ... sampai foto12.jpg. Yang ada saja
+     yang tampil; kalau tidak ada satu pun, bagian Galeri
+     otomatis tidak muncul.
   ============================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +67,12 @@
   .ucapan{text-align:left;background:rgba(255,255,255,.85);border-left:3px solid var(--gold);
     border-radius:8px;padding:10px 14px;margin:8px 0}
   .ucapan b{font-size:14px}.ucapan p{font-size:14px}
+  /* ---------- FOTO & GALERI ---------- */
+  .foto-mempelai{width:150px;height:150px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--gold);margin-bottom:12px;background:#eee}
+  .galeri-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .galeri-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;
+    border:1px solid rgba(176,141,62,.35);background:#eee}
   /* ---------- MUSIK ---------- */
   #musikBtn{position:fixed;right:16px;bottom:16px;z-index:40;width:48px;height:48px;border-radius:50%;
     border:1px solid rgba(176,141,62,.5);background:rgba(255,255,255,.9);font-size:20px;cursor:pointer;display:none}
@@ -102,11 +115,13 @@
     <h2>Mempelai</h2>
     <div class="orn">❦</div>
     <div class="card">
+      <img class="foto-mempelai" src="foto-pria.jpg" alt="Foto mempelai pria" onerror="this.style.display='none'">
       <h2 style="font-size:24px" id="namaPria">Raka Pratama, S.T.</h2>
       <p>Putra dari Bapak H. Pratama<br>&amp; Ibu Hj. Pratama</p>
     </div>
     <div class="orn">&amp;</div>
     <div class="card">
+      <img class="foto-mempelai" src="foto-wanita.jpg" alt="Foto mempelai wanita" onerror="this.style.display='none'">
       <h2 style="font-size:24px" id="namaWanita">Dinda Ayu Lestari, S.E.</h2>
       <p>Putri dari Bapak H. Lestari<br>&amp; Ibu Hj. Lestari</p>
     </div>
@@ -138,6 +153,13 @@
       <p id="alamatResepsi">Gedung Serbaguna Contoh<br>Jl. Merdeka No. 123, Jakarta</p>
     </div>
     <a class="btn" id="btnMaps" href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Jakarta" target="_blank" rel="noopener">📍 Buka Google Maps</a>
+  </section>
+
+  <!-- ================= GALERI ================= -->
+  <section id="galeriSection" style="display:none">
+    <h2>Galeri</h2>
+    <div class="orn">❦</div>
+    <div class="galeri-grid" id="galeriGrid"></div>
   </section>
 
   <!-- ================= AMPLOP DIGITAL ================= -->
@@ -192,7 +214,7 @@
 </div>
 
 <!-- Musik: taruh file MP3 bernama musik.mp3 di folder assets -->
-<audio id="musik" src="assets/musik.mp3" loop></audio>
+<audio id="musik" src="musik.mp3" loop></audio>
 <button id="musikBtn" onclick="toggleMusik()" title="Musik">🎵</button>
 
 <script>
@@ -238,6 +260,29 @@ function tick(){
   document.getElementById('cd-detik').textContent = d;
 }
 tick(); setInterval(tick, 1000);
+
+/* ---------- Galeri: muat foto1.jpg s.d. foto12.jpg yang tersedia ---------- */
+(async function(){
+  const grid = document.getElementById('galeriGrid');
+  const section = document.getElementById('galeriSection');
+  for (let i = 1; i <= 12; i++){
+    const src = 'foto' + i + '.jpg';
+    const ok = await new Promise(res => {
+      const im = new Image();
+      im.onload = () => res(true);
+      im.onerror = () => res(false);
+      im.src = src;
+    });
+    if (ok){
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'Foto galeri ' + i;
+      img.loading = 'lazy';
+      grid.appendChild(img);
+      section.style.display = '';
+    }
+  }
+})();
 
 /* ---------- Salin nomor rekening ---------- */
 function salin(id){
