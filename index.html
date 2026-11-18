@@ -80,8 +80,6 @@
 </style>
 </head>
 <body>
-<!-- SAMPLE BADGE (contoh untuk portofolio Fastwork) -->
-<div style="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9999;background:rgba(25,26,46,.88);color:#f4c95d;font-family:Georgia,serif;font-size:12px;letter-spacing:2px;padding:7px 16px;border-radius:999px;border:1px solid rgba(244,201,93,.6);pointer-events:none;white-space:nowrap;">CONTOH UNDANGAN &bull; SAMPLE BY @FUDAYAF</div>
 
 
 <!-- ================= COVER ================= -->
@@ -117,13 +115,13 @@
     <div class="card">
       <img class="foto-mempelai" src="foto-pria.jpg" alt="Foto mempelai pria" onerror="this.style.display='none'">
       <h2 style="font-size:24px" id="namaPria">Raka Pratama, S.T.</h2>
-      <p>Putra dari Bapak H. Pratama<br>&amp; Ibu Hj. Pratama</p>
+      <p>Putra dari Bapak H. Bambang Pratama<br>&amp; Ibu Hj. Sari Wulandari</p>
     </div>
     <div class="orn">&amp;</div>
     <div class="card">
       <img class="foto-mempelai" src="foto-wanita.jpg" alt="Foto mempelai wanita" onerror="this.style.display='none'">
       <h2 style="font-size:24px" id="namaWanita">Dinda Ayu Lestari, S.E.</h2>
-      <p>Putri dari Bapak H. Lestari<br>&amp; Ibu Hj. Lestari</p>
+      <p>Putri dari Bapak H. Dedi Lestari<br>&amp; Ibu Hj. Ratna Dewi</p>
     </div>
   </section>
 
@@ -144,15 +142,15 @@
     <div class="orn">❦</div>
     <div class="card">
       <h2 style="font-size:22px">Akad Nikah</h2>
-      <p><b>Sabtu, 19 Juni 2027</b><br>Pukul 08.00 WIB – selesai</p>
-      <p id="alamatAkad">Gedung Serbaguna Contoh<br>Jl. Merdeka No. 123, Jakarta</p>
+      <p><b>Sabtu, 12 September 2026</b><br>Pukul 08.00 WIB – selesai</p>
+      <p id="alamatAkad">Mahakam Grand Ballroom<br>Jl. Mahakam Raya No. 8, Kebayoran Baru, Jakarta Selatan</p>
     </div>
     <div class="card">
       <h2 style="font-size:22px">Resepsi</h2>
-      <p><b>Sabtu, 19 Juni 2027</b><br>Pukul 11.00 – 13.00 WIB</p>
-      <p id="alamatResepsi">Gedung Serbaguna Contoh<br>Jl. Merdeka No. 123, Jakarta</p>
+      <p><b>Sabtu, 12 September 2026</b><br>Pukul 11.00 – 13.00 WIB</p>
+      <p id="alamatResepsi">Mahakam Grand Ballroom<br>Jl. Mahakam Raya No. 8, Kebayoran Baru, Jakarta Selatan</p>
     </div>
-    <a class="btn" id="btnMaps" href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Jakarta" target="_blank" rel="noopener">📍 Buka Google Maps</a>
+    <a class="btn" id="btnMaps" href="https://www.google.com/maps/search/?api=1&query=Mahakam+Grand+Ballroom+Kebayoran+Baru+Jakarta+Selatan" target="_blank" rel="noopener">📍 Buka Google Maps</a>
   </section>
 
   <!-- ================= GALERI ================= -->
@@ -168,13 +166,13 @@
     <p>Doa restu Anda adalah hadiah terindah. Namun apabila berkenan memberikan tanda kasih, kami sediakan:</p>
     <div class="card">
       <p><b>BCA</b></p>
-      <p id="rek1" style="font-size:18px;letter-spacing:1px">1234567890</p>
+      <p id="rek1" style="font-size:18px;letter-spacing:1px">5420187630</p>
       <p>a.n. Raka Pratama</p>
       <button class="btn" onclick="salin('rek1')">Salin Nomor</button>
     </div>
     <div class="card">
       <p><b>DANA / OVO / GoPay</b></p>
-      <p id="rek2" style="font-size:18px;letter-spacing:1px">081234567890</p>
+      <p id="rek2" style="font-size:18px;letter-spacing:1px">081357294418</p>
       <p>a.n. Dinda Ayu Lestari</p>
       <button class="btn" onclick="salin('rek2')">Salin Nomor</button>
     </div>
@@ -194,8 +192,7 @@
       <button class="btn" style="width:100%" onclick="kirimUcapan()">Kirim Ucapan</button>
     </div>
     <div id="daftarUcapan"></div>
-    <p style="font-size:12px;color:var(--soft)">*Contoh tampilan — ucapan tersimpan di perangkat tamu (demo).
-      Untuk versi produksi, hubungkan ke database/Google Sheets.</p>
+    <p style="font-size:12px;color:var(--soft)">*Terima kasih atas ucapan dan doa restunya untuk kedua mempelai.</p>
   </section>
 
   <!-- ================= PENUTUP ================= -->
@@ -210,7 +207,7 @@
     <p>beserta keluarga besar</p>
   </section>
 
-  <footer>Template Undangan Digital — dibuat dengan HTML/CSS/JS<br><span style="font-size:11px">Musik contoh: "Canon in D Major" oleh Kevin MacLeod (incompetech.com) — CC BY 4.0</span></footer>
+  <footer>Raka &amp; Dinda — 12 . 09 . 2026<br><span style="font-size:11px">Undangan digital oleh @fudayaf &bull; Musik: "Canon in D Major" oleh Kevin MacLeod (incompetech.com) — CC BY 4.0</span></footer>
 </div>
 
 <!-- Musik: taruh file MP3 bernama musik.mp3 di folder assets -->
@@ -225,7 +222,7 @@ const CONFIG = {
   namaPria:   "Raka Pratama, S.T.",
   namaWanita: "Dinda Ayu Lestari, S.E.",
   // Tanggal acara untuk countdown (format: TAHUN-BULAN-TANGGAL JAM)
-  tanggalAcara: "2027-06-19T08:00:00+07:00",
+  tanggalAcara: "2026-09-12T08:00:00+07:00",
 };
 
 /* ---------- Nama tamu dari URL: ?to=Nama+Tamu ---------- */
