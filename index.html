@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan — Raka &amp; Dinda</title>
+<!--
+  ============================================================
+  TEMPLATE UNDANGAN DIGITAL — cara edit:
+  1. Semua data penting ada di bagian CONFIG (di <script> paling bawah).
+     Ganti nama, tanggal, alamat, link maps, dan nomor rekening di sana.
+  2. Background cover ada di file bg-undangan.jpg (boleh diganti
+     dengan gambar lain, nama file samakan).
+  3. Musik: taruh file MP3 di folder assets, beri nama musik.mp3
+     (baris <audio> di bawah akan otomatis memakainya).
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf5ec; --gold:#b08d3e; --gold-dark:#8a6d2f;
+    --ink:#4a3f2a; --soft:#8a7a5c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink)}
+  .wrap{max-width:480px;margin:0 auto;background:var(--cream);
+    background-image:url('bg-undangan.jpg');background-size:cover;
+    background-position:center;background-attachment:fixed;min-height:100vh;
+    box-shadow:0 0 40px rgba(0,0,0,.15)}
+  section{padding:56px 28px;text-align:center}
+  h1,h2{font-family:'Playfair Display',serif;color:var(--gold-dark)}
+  h2{font-size:28px;margin-bottom:14px}
+  .orn{color:var(--gold);font-size:20px;letter-spacing:8px;margin:10px 0}
+  p{font-weight:300;line-height:1.7;font-size:15px}
+  .card{background:rgba(255,255,255,.82);border:1px solid rgba(176,141,62,.35);
+    border-radius:16px;padding:24px 18px;margin:14px 0;backdrop-filter:blur(3px)}
+  .btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;
+    padding:12px 28px;border-radius:999px;font-size:15px;letter-spacing:.5px;
+    border:none;cursor:pointer;transition:.2s}
+  .btn:hover{background:var(--gold-dark)}
+  /* ---------- COVER ---------- */
+  #cover{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+    background:url('bg-undangan.jpg') center/cover no-repeat;transition:opacity .8s, visibility .8s}
+  #cover.hide{opacity:0;visibility:hidden}
+  #cover .inner{max-width:480px;text-align:center;padding:24px}
+  #cover h1{font-size:42px;margin:10px 0}
+  #cover .label{letter-spacing:3px;font-size:13px;color:var(--soft);text-transform:uppercase}
+  #namaTamu{font-weight:500;font-size:18px;margin-top:6px}
+  /* ---------- COUNTDOWN ---------- */
+  .cd{display:flex;gap:10px;justify-content:center;margin-top:18px}
+  .cd div{background:var(--gold);color:#fff;border-radius:12px;width:68px;padding:10px 0}
+  .cd b{font-size:22px;display:block;font-family:'Playfair Display',serif}
+  .cd span{font-size:11px;letter-spacing:1px;text-transform:uppercase}
+  /* ---------- FORM ---------- */
+  input,select,textarea{width:100%;padding:11px 12px;margin:6px 0;border-radius:10px;
+    border:1px solid rgba(176,141,62,.4);font-family:'Jost',sans-serif;font-size:14px;background:#fff}
+  textarea{resize:vertical;min-height:70px}
+  .ucapan{text-align:left;background:rgba(255,255,255,.85);border-left:3px solid var(--gold);
+    border-radius:8px;padding:10px 14px;margin:8px 0}
+  .ucapan b{font-size:14px}.ucapan p{font-size:14px}
+  /* ---------- MUSIK ---------- */
+  #musikBtn{position:fixed;right:16px;bottom:16px;z-index:40;width:48px;height:48px;border-radius:50%;
+    border:1px solid rgba(176,141,62,.5);background:rgba(255,255,255,.9);font-size:20px;cursor:pointer;display:none}
+  footer{padding:30px 20px 60px;text-align:center;color:var(--soft);font-size:13px}
+</style>
+</head>
+<body>
+<!-- SAMPLE BADGE (contoh untuk portofolio Fastwork) -->
+<div style="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9999;background:rgba(25,26,46,.88);color:#f4c95d;font-family:Georgia,serif;font-size:12px;letter-spacing:2px;padding:7px 16px;border-radius:999px;border:1px solid rgba(244,201,93,.6);pointer-events:none;white-space:nowrap;">CONTOH UNDANGAN &bull; SAMPLE BY @FUDAYAF</div>
+
+
+<!-- ================= COVER ================= -->
+<div id="cover">
+  <div class="inner">
+    <div class="label">Undangan Pernikahan</div>
+    <h1 id="coverNama">Raka &amp; Dinda</h1>
+    <div class="orn">✦ ✦ ✦</div>
+    <p>Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+    <div id="namaTamu">Tamu Undangan</div>
+    <p style="font-size:12px;color:var(--soft)">*Mohon maaf apabila terdapat kesalahan<br>penulisan nama &amp; gelar</p>
+    <br>
+    <button class="btn" onclick="bukaUndangan()">✉ Buka Undangan</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= PEMBUKA ================= -->
+  <section>
+    <p style="font-size:18px">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+    <br>
+    <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i></p>
+    <br>
+    <p>Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud mengundang
+       Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:</p>
+  </section>
+
+  <!-- ================= MEMPELAI ================= -->
+  <section>
+    <h2>Mempelai</h2>
+    <div class="orn">❦</div>
+    <div class="card">
+      <h2 style="font-size:24px" id="namaPria">Raka Pratama, S.T.</h2>
+      <p>Putra dari Bapak H. Pratama<br>&amp; Ibu Hj. Pratama</p>
+    </div>
+    <div class="orn">&amp;</div>
+    <div class="card">
+      <h2 style="font-size:24px" id="namaWanita">Dinda Ayu Lestari, S.E.</h2>
+      <p>Putri dari Bapak H. Lestari<br>&amp; Ibu Hj. Lestari</p>
+    </div>
+  </section>
+
+  <!-- ================= COUNTDOWN ================= -->
+  <section>
+    <h2>Menghitung Hari</h2>
+    <div class="cd">
+      <div><b id="cd-hari">0</b><span>Hari</span></div>
+      <div><b id="cd-jam">0</b><span>Jam</span></div>
+      <div><b id="cd-menit">0</b><span>Menit</span></div>
+      <div><b id="cd-detik">0</b><span>Detik</span></div>
+    </div>
+  </section>
+
+  <!-- ================= ACARA ================= -->
+  <section>
+    <h2>Waktu &amp; Tempat</h2>
+    <div class="orn">❦</div>
+    <div class="card">
+      <h2 style="font-size:22px">Akad Nikah</h2>
+      <p><b>Sabtu, 19 Juni 2027</b><br>Pukul 08.00 WIB – selesai</p>
+      <p id="alamatAkad">Gedung Serbaguna Contoh<br>Jl. Merdeka No. 123, Jakarta</p>
+    </div>
+    <div class="card">
+      <h2 style="font-size:22px">Resepsi</h2>
+      <p><b>Sabtu, 19 Juni 2027</b><br>Pukul 11.00 – 13.00 WIB</p>
+      <p id="alamatResepsi">Gedung Serbaguna Contoh<br>Jl. Merdeka No. 123, Jakarta</p>
+    </div>
+    <a class="btn" id="btnMaps" href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Jakarta" target="_blank" rel="noopener">📍 Buka Google Maps</a>
+  </section>
+
+  <!-- ================= AMPLOP DIGITAL ================= -->
+  <section>
+    <h2>Amplop Digital</h2>
+    <p>Doa restu Anda adalah hadiah terindah. Namun apabila berkenan memberikan tanda kasih, kami sediakan:</p>
+    <div class="card">
+      <p><b>BCA</b></p>
+      <p id="rek1" style="font-size:18px;letter-spacing:1px">1234567890</p>
+      <p>a.n. Raka Pratama</p>
+      <button class="btn" onclick="salin('rek1')">Salin Nomor</button>
+    </div>
+    <div class="card">
+      <p><b>DANA / OVO / GoPay</b></p>
+      <p id="rek2" style="font-size:18px;letter-spacing:1px">081234567890</p>
+      <p>a.n. Dinda Ayu Lestari</p>
+      <button class="btn" onclick="salin('rek2')">Salin Nomor</button>
+    </div>
+  </section>
+
+  <!-- ================= UCAPAN & RSVP ================= -->
+  <section>
+    <h2>Ucapan &amp; Konfirmasi</h2>
+    <div class="card" style="text-align:left">
+      <input id="fNama" type="text" placeholder="Nama Anda">
+      <select id="fHadir">
+        <option value="Hadir">Insya Allah, hadir</option>
+        <option value="Tidak hadir">Maaf, belum bisa hadir</option>
+        <option value="Masih ragu">Masih ragu</option>
+      </select>
+      <textarea id="fPesan" placeholder="Tulis ucapan &amp; doa untuk mempelai..."></textarea>
+      <button class="btn" style="width:100%" onclick="kirimUcapan()">Kirim Ucapan</button>
+    </div>
+    <div id="daftarUcapan"></div>
+    <p style="font-size:12px;color:var(--soft)">*Contoh tampilan — ucapan tersimpan di perangkat tamu (demo).
+      Untuk versi produksi, hubungkan ke database/Google Sheets.</p>
+  </section>
+
+  <!-- ================= PENUTUP ================= -->
+  <section>
+    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami beserta keluarga
+       apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+    <br>
+    <p><i>Wassalamu'alaikum Warahmatullahi Wabarakatuh</i></p>
+    <div class="orn">❦</div>
+    <p>Kami yang berbahagia,</p>
+    <h2 style="font-size:26px">Raka &amp; Dinda</h2>
+    <p>beserta keluarga besar</p>
+  </section>
+
+  <footer>Template Undangan Digital — dibuat dengan HTML/CSS/JS</footer>
+</div>
+
+<!-- Musik: taruh file MP3 bernama musik.mp3 di folder assets -->
+<audio id="musik" src="assets/musik.mp3" loop></audio>
+<button id="musikBtn" onclick="toggleMusik()" title="Musik">🎵</button>
+
+<script>
+/* ================================================================
+   CONFIG — EDIT SEMUA DATA DI SINI
+   ================================================================ */
+const CONFIG = {
+  namaPria:   "Raka Pratama, S.T.",
+  namaWanita: "Dinda Ayu Lestari, S.E.",
+  // Tanggal acara untuk countdown (format: TAHUN-BULAN-TANGGAL JAM)
+  tanggalAcara: "2027-06-19T08:00:00+07:00",
+};
+
+/* ---------- Nama tamu dari URL: ?to=Nama+Tamu ---------- */
+const tamu = new URLSearchParams(location.search).get('to');
+if (tamu) document.getElementById('namaTamu').textContent = tamu;
+
+/* ---------- Buka undangan ---------- */
+function bukaUndangan(){
+  document.getElementById('cover').classList.add('hide');
+  document.getElementById('musikBtn').style.display = 'block';
+  putarMusik();
+}
+
+/* ---------- Musik ---------- */
+const audio = document.getElementById('musik');
+let musikJalan = false;
+function putarMusik(){ audio.play().then(()=>{ musikJalan = true; }).catch(()=>{}); }
+function toggleMusik(){
+  if (musikJalan){ audio.pause(); musikJalan = false; }
+  else putarMusik();
+}
+
+/* ---------- Countdown ---------- */
+const target = new Date(CONFIG.tanggalAcara).getTime();
+function tick(){
+  let sisa = Math.max(0, target - Date.now());
+  const h = Math.floor(sisa / 864e5), j = Math.floor(sisa / 36e5) % 24,
+        m = Math.floor(sisa / 6e4) % 60, d = Math.floor(sisa / 1e3) % 60;
+  document.getElementById('cd-hari').textContent = h;
+  document.getElementById('cd-jam').textContent = j;
+  document.getElementById('cd-menit').textContent = m;
+  document.getElementById('cd-detik').textContent = d;
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- Salin nomor rekening ---------- */
+function salin(id){
+  const teks = document.getElementById(id).textContent.trim();
+  navigator.clipboard.writeText(teks).then(()=> alert('Nomor tersalin: ' + teks));
+}
+
+/* ---------- Kirim ucapan (demo, tampil di halaman ini saja) ---------- */
+function kirimUcapan(){
+  const nama = document.getElementById('fNama').value.trim();
+  const hadir = document.getElementById('fHadir').value;
+  const pesan = document.getElementById('fPesan').value.trim();
+  if (!nama || !pesan){ alert('Isi nama dan ucapan dulu ya.'); return; }
+  const div = document.createElement('div');
+  div.className = 'ucapan';
+  div.innerHTML = '<b></b> <span style="color:var(--soft);font-size:12px"></span><p></p>';
+  div.querySelector('b').textContent = nama;
+  div.querySelector('span').textContent = '• ' + hadir;
+  div.querySelector('p').textContent = pesan;
+  document.getElementById('daftarUcapan').prepend(div);
+  document.getElementById('fNama').value = '';
+  document.getElementById('fPesan').value = '';
+}
+</script>
+</body>
+</html>
